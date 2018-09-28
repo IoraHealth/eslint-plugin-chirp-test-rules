@@ -9,29 +9,36 @@
 //------------------------------------------------------------------------------
 
 var rule = require("../../../lib/rules/prohibit-dot-only"),
-
-    RuleTester = require("../../../lib/testers/rule-tester");
-
+    RuleTester = require("eslint").RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
+RuleTester.setDefaultConfig({
+  parserOptions: {
+    ecmaVersion: 2017,
+    sourceType: 'module'
+  }
+});
+
 var ruleTester = new RuleTester();
 ruleTester.run("prohibit-dot-only", rule, {
+  valid: [
+    // give me some code that won't trigger a warning
+  ],
 
-    valid: [
-
-        // give me some code that won't trigger a warning
-    ],
-
-    invalid: [
+  invalid: [
+    {
+      code: `
+        import { it } from 'mocha';
+        it.only('works', function() {});
+      `,
+      errors: [
         {
-            code: "it.only(\"works\", () => expect(subject).to.be.ok)",
-            errors: [{
-                message: "Fill me in.",
-                type: "Me too"
-            }]
+          message: "it.only calls are not permitted"
         }
-    ]
+      ]
+    }
+  ]
 });
