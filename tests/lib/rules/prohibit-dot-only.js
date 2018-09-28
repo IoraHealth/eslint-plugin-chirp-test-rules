@@ -33,6 +33,10 @@ ruleTester.run("prohibit-dot-only", rule, {
     "import { notContext } from 'mocha'; context.only('works', function() {});",
     "import { notDescribe } from 'mocha'; describe.only('works', function() {});",
 
+    "import { it } from 'not-mocha'; it.only('works', function() {});",
+    "import { context } from 'not-mocha'; context.only('works', function() {});",
+    "import { describe } from 'not-mocha'; describe.only('works', function() {});",
+
     "import { hello } from 'mocha'; hello.only('works', function() {});"
   ],
 

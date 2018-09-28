@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-chirp-test-rules",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "Enforces best practices for ember mocha tests",
   "keywords": [
     "eslint",
