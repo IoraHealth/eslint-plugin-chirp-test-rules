@@ -1,7 +1,6 @@
-# Don&#39;t allow it.only and similar tests in mocha (no-jquery-find)
+# Depcrecated j-query based "find" function (no-jquery-find)
 
-Please describe the origin of the rule here.
-
+As we refactor the "find" function, we may have instances where a single test file contains both the deprecated j-query version, and the new ember-native-dom based version.  This lint rule is meant to raise any instances of the depcreated version.
 
 ## Rule Details
 
@@ -10,27 +9,79 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
+const el = find(".selector");
+```
 
-// fill me in
+```js
+const el = find(".selector").text();
+```
 
+```js
+import { find as x } from "ember-native-dom-helpers";
+const el = find(".selector");
+```
+
+```js
+import { find as x } from "ember-native-dom-helpers";
+const el = find(".selector").text();
+```
+
+```js
+expect(find(".selector")).to.be.ok;
+```
+
+```js
+expect(find(".selector").text()).to.be.ok;
+```
+
+```js
+import { find as x } from "ember-native-dom-helpers";
+expect(find(".selector")).to.be.ok;
+```
+
+```js
+import { find as x } from "ember-native-dom-helpers";
+expect(find(".selector").text()).to.be.ok;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-
-// fill me in
-
+import { find } from "ember-native-dom-helpers";
+const el = find(".selector");
 ```
 
-### Options
+```js
+import { find as blah } from "ember-native-dom-helpers";
+const el = blah(".selector");
+```
 
-If there are any options, describe them here. Otherwise, delete this section.
+```js
+import { find } from "ember-native-dom-helpers";
+const el = find(".selector").text();
+```
 
-## When Not To Use It
+```js
+import { find as blah } from "ember-native-dom-helpers";
+const el = blah(".selector").text();
+```
 
-Give a short description of when it would be appropriate to turn off this rule.
+```js
+import { find } from "ember-native-dom-helpers";
+expect(find(".selector")).to.be.ok;
+```
 
-## Further Reading
+```js
+import { find as blah } from "ember-native-dom-helpers";
+expect(blah(".selector")).to.be.ok;
+```
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+```js
+import { find } from "ember-native-dom-helpers";
+expect(find(".selector").text()).to.be.ok;
+```
+
+```js
+import { find as blah } from "ember-native-dom-helpers";
+expect(blah(".selector").text()).to.be.ok;
+```

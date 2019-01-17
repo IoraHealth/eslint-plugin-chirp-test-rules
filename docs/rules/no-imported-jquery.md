@@ -1,26 +1,40 @@
 # Disallows the use of the jquery library (no-imported-jquery)
 
-Please describe the origin of the rule here.
-
-
 ## Rule Details
-
-This rule aims to...
 
 Examples of **incorrect** code for this rule:
 
 ```js
-
-// fill me in
-
+import $ from "jquery";
 ```
+
+```js
+import $ from "jquery";
+$({ x: 3 });
+```
+
+```js
+import $ from "jquery";
+$.world({ x: 3 });
+```
+
+```js
+import hello from "jquery";
+hello({ x: 3 });
+```
+
+```js
+import { params } from "jquery";
+params({ x: 3 });
+```
+
 
 Examples of **correct** code for this rule:
 
 ```js
-
-// fill me in
-
+import $ from "something-else";
+$("");
+$.params("");
 ```
 
 ### Options
