@@ -25,8 +25,40 @@ RuleTester.setDefaultConfig({
 var ruleTester = new RuleTester();
 ruleTester.run("async-contains-then-clause", rule, {
   valid: [
+    "function f() { return hello().then(v => world); }",
+    "function f() { return hello().catch(v => world); }",
+    "var f = () => { return hello().then(v => world); }",
+    "var f = () => { return hello().catch(v => world); }",
+    "async function f() { var v = await hello(); return 4 * v; }",
+    "async function f() { try { await Promise.reject(3); } catch(e) { return e * 4; } }",
+    "var f = async () => { var v = await hello(); return 4 * v; }",
+    "var f = async () => { try { await Promise.reject(3); } catch(e) { return e * 4; } }",
   ],
 
   invalid: [
+    {
+      code: "async function f() { await Promise.resolve(3).then(v => 4 * v); }",
+      errors: ['async function contains "then" clause']
+    },
+    {
+      code: "async function f() { await Promise.reject(3).catch(v => 4 * v); }",
+      errors: ['async function contains "catch" clause']
+    },
+    {
+      code: "var f = async function() { await Promise.resolve(3).then(v => 4 * v); }",
+      errors: ['async function contains "then" clause']
+    },
+    {
+      code: "var f = async function() { await Promise.reject(3).catch(v => 4 * v); }",
+      errors: ['async function contains "catch" clause']
+    },
+    {
+      code: "var f = async () => { await Promise.resolve(3).then(v => 4 * v); }",
+      errors: ['async function contains "then" clause']
+    },
+    {
+      code: "var f = async () => { await Promise.reject(3).catch(v => 4 * v); }",
+      errors: ['async function contains "catch" clause']
+    }
   ]
 });
