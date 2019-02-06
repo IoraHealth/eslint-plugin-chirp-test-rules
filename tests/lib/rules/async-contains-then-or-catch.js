@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var rule = require("../../../lib/rules/async-contains-then-clause"),
+var rule = require("../../../lib/rules/async-contains-then-or-catch"),
   RuleTester = require("eslint").RuleTester;
 
 //------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ RuleTester.setDefaultConfig({
 });
 
 var ruleTester = new RuleTester();
-ruleTester.run("async-contains-then-clause", rule, {
+ruleTester.run("async-contains-then-or-catch", rule, {
   valid: [
     "function f() { return hello().then(v => world); }",
     "function f() { return hello().catch(v => world); }",
