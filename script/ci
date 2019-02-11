@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -e
+
+source /home/kochiku/.bashrc
+
+set -x
+
+function ensure_nodejs() {
+  nodenv install --skip-existing $(cat .node-version)
+}
+
+function install_dependencies() {
+  ensure_nodejs
+  echo "Node Version: $(node -v)"
+  echo "Yarn Version: $(yarn --version)"
+  echo "NPM Version: $(npm -v)"
+  yarn install
+}
+
+function prepare_and_run() {
+  install_dependencies
+  npm test
+}
+
+prepare_and_run
+success=$?
+exit $success
