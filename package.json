@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-chirp-test-rules",
-  "version": "1.5.1",
+  "version": "1.6.1",
   "description": "A set of custom lint rules for apps created by Iora Health",
   "keywords": [
     "eslint",
