@@ -24,28 +24,24 @@ Add `chirp-test-rules` to the plugins section of your `.eslintrc` configuration 
 
 ```json
 {
-    "plugins": [
-        "chirp-test-rules"
-    ]
+  "plugins": ["chirp-test-rules"]
 }
 ```
-
 
 Then configure the rules you want to use under the rules section.
 
 ```json
 {
-    "rules": {
-        "chirp-test-rules/rule-name": 2
-    }
+  "rules": {
+    "chirp-test-rules/rule-name": 2
+  }
 }
 ```
 
 ## Supported Rules
 
-* Fill in provided rules here
+- Fill in provided rules here
 
+## Automated Testing
 
-
-
-
+[![CircleCI](https://circleci.com/github/IoraHealth/eslint-plugin-chirp-test-rules.svg?style=svg)](https://app.circleci.com/pipelines/github/IoraHealth/eslint-plugin-chirp-test-rules)

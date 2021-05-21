@@ -1,0 +1,8 @@
+orbs:
+  node: circleci/node@4.2.1
+
+version: 2.1
+  app-tests:
+    jobs:
+      - node/test
+
