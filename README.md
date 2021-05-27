@@ -45,3 +45,4 @@ Then configure the rules you want to use under the rules section.
 ## Automated Testing
 
 [![CircleCI](https://circleci.com/github/IoraHealth/eslint-plugin-chirp-test-rules.svg?style=svg)](https://app.circleci.com/pipelines/github/IoraHealth/eslint-plugin-chirp-test-rules)
+
